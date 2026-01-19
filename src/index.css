@@ -1,0 +1,325 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ihumure - Mental Wellness Platform Design System
+   A calming, therapeutic aesthetic with soft greens, warm accents, and gentle animations
+   All colors in HSL format
+*/
+
+@layer base {
+  :root {
+    /* Core Background & Foreground */
+    --background: 45 30% 98%;
+    --foreground: 200 25% 20%;
+
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 200 25% 20%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 25% 20%;
+
+    /* Primary - Healing Teal/Sage */
+    --primary: 168 45% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 168 35% 92%;
+    --primary-glow: 168 50% 60%;
+
+    /* Secondary - Warm Peach */
+    --secondary: 25 70% 92%;
+    --secondary-foreground: 25 50% 30%;
+
+    /* Muted */
+    --muted: 45 20% 95%;
+    --muted-foreground: 200 15% 45%;
+
+    /* Accent - Soft Lavender */
+    --accent: 270 40% 94%;
+    --accent-foreground: 270 30% 35%;
+
+    /* Destructive */
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border & Input */
+    --border: 168 20% 88%;
+    --input: 168 20% 90%;
+    --ring: 168 45% 45%;
+
+    /* Radius */
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 168 25% 97%;
+    --sidebar-foreground: 200 25% 25%;
+    --sidebar-primary: 168 45% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 168 30% 92%;
+    --sidebar-accent-foreground: 200 25% 25%;
+    --sidebar-border: 168 20% 88%;
+    --sidebar-ring: 168 45% 50%;
+
+    /* Custom Wellness Colors */
+    --wellness-breathe: 190 60% 50%;
+    --wellness-breathe-soft: 190 50% 95%;
+    --wellness-gratitude: 45 80% 55%;
+    --wellness-gratitude-soft: 45 70% 94%;
+    --wellness-affirmation: 280 50% 60%;
+    --wellness-affirmation-soft: 280 40% 95%;
+    --wellness-audio: 330 50% 55%;
+    --wellness-audio-soft: 330 40% 95%;
+    --wellness-mood: 200 60% 50%;
+    --wellness-mood-soft: 200 50% 95%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(168 40% 96%) 0%, hsl(45 30% 98%) 50%, hsl(270 35% 97%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(168 45% 45%) 0%, hsl(168 50% 55%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(25 70% 92%) 0%, hsl(45 80% 94%) 100%);
+    --gradient-calm: linear-gradient(180deg, hsl(168 40% 97%) 0%, hsl(200 30% 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(168 30% 98%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(168 30% 50% / 0.12);
+    --shadow-card: 0 2px 12px -2px hsl(168 30% 50% / 0.08);
+    --shadow-hover: 0 8px 30px -6px hsl(168 30% 50% / 0.18);
+    --shadow-glow: 0 0 40px hsl(168 45% 50% / 0.15);
+  }
+
+  .dark {
+    --background: 200 25% 10%;
+    --foreground: 45 20% 95%;
+
+    --card: 200 20% 14%;
+    --card-foreground: 45 20% 95%;
+
+    --popover: 200 20% 14%;
+    --popover-foreground: 45 20% 95%;
+
+    --primary: 168 50% 55%;
+    --primary-foreground: 200 25% 10%;
+    --primary-soft: 168 30% 20%;
+    --primary-glow: 168 45% 45%;
+
+    --secondary: 25 40% 20%;
+    --secondary-foreground: 25 60% 90%;
+
+    --muted: 200 20% 18%;
+    --muted-foreground: 200 15% 60%;
+
+    --accent: 270 30% 22%;
+    --accent-foreground: 270 40% 90%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 22%;
+    --input: 200 20% 22%;
+    --ring: 168 50% 55%;
+
+    --sidebar-background: 200 25% 12%;
+    --sidebar-foreground: 45 20% 90%;
+    --sidebar-primary: 168 50% 55%;
+    --sidebar-primary-foreground: 200 25% 10%;
+    --sidebar-accent: 200 20% 18%;
+    --sidebar-accent-foreground: 45 20% 90%;
+    --sidebar-border: 200 20% 22%;
+    --sidebar-ring: 168 50% 55%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(200 25% 10%) 0%, hsl(200 20% 12%) 50%, hsl(220 20% 12%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(200 20% 14%) 0%, hsl(200 22% 16%) 100%);
+    
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.3);
+    --shadow-hover: 0 8px 30px -6px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(168 50% 50% / 0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Gradient backgrounds */
+  .bg-hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .bg-primary-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .bg-warm-gradient {
+    background: var(--gradient-warm);
+  }
+
+  .bg-calm-gradient {
+    background: var(--gradient-calm);
+  }
+
+  .bg-card-gradient {
+    background: var(--gradient-card);
+  }
+
+  /* Custom shadows */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Text gradients */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass effect */
+  .glass {
+    background: hsl(0 0% 100% / 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .dark .glass {
+    background: hsl(200 20% 14% / 0.7);
+  }
+
+  /* Breathing animation for wellness */
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Gentle pulse */
+  .animate-gentle-pulse {
+    animation: gentlePulse 3s ease-in-out infinite;
+  }
+
+  @keyframes gentlePulse {
+    0%, 100% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Fade in up animation */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Wellness card styles */
+  .wellness-card {
+    @apply relative overflow-hidden rounded-2xl p-6 transition-all duration-300;
+    @apply hover:shadow-hover hover:-translate-y-1;
+  }
+
+  .wellness-card-breathe {
+    background: linear-gradient(135deg, hsl(var(--wellness-breathe-soft)) 0%, hsl(0 0% 100%) 100%);
+    border: 1px solid hsl(var(--wellness-breathe) / 0.2);
+  }
+
+  .wellness-card-gratitude {
+    background: linear-gradient(135deg, hsl(var(--wellness-gratitude-soft)) 0%, hsl(0 0% 100%) 100%);
+    border: 1px solid hsl(var(--wellness-gratitude) / 0.2);
+  }
+
+  .wellness-card-affirmation {
+    background: linear-gradient(135deg, hsl(var(--wellness-affirmation-soft)) 0%, hsl(0 0% 100%) 100%);
+    border: 1px solid hsl(var(--wellness-affirmation) / 0.2);
+  }
+
+  .wellness-card-audio {
+    background: linear-gradient(135deg, hsl(var(--wellness-audio-soft)) 0%, hsl(0 0% 100%) 100%);
+    border: 1px solid hsl(var(--wellness-audio) / 0.2);
+  }
+
+  .wellness-card-mood {
+    background: linear-gradient(135deg, hsl(var(--wellness-mood-soft)) 0%, hsl(0 0% 100%) 100%);
+    border: 1px solid hsl(var(--wellness-mood) / 0.2);
+  }
+}
+
+@layer utilities {
+  /* Safe area padding for mobile */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
