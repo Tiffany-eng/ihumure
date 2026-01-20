@@ -9,7 +9,7 @@ const footerLinks = {
     { name: "Wellness Activities", href: "/wellness" },
   ],
   community: [
-    { name: "Share Your Story", href: "/community" },
+    { name: "Share Your Story", href: "/share-story" },
     { name: "Events & Workshops", href: "/events" },
     { name: "Resources", href: "/resources" },
   ],
@@ -49,7 +49,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm mb-6 max-w-sm">
-              A safe space for mental wellness in Rwanda. Connect with others, 
+              A safe space for mental wellness in Rwanda. Connect with others,
               access resources, and take steps toward healing together.
             </p>
             <div className="space-y-2">
@@ -133,7 +133,7 @@ export function Footer() {
               &copy; {new Date().getFullYear()} Ihumure. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground text-center md:text-right max-w-md">
-              Disclaimer: Ihumure provides mental health information and peer support. 
+              Disclaimer: Ihumure provides mental health information and peer support.
               It is not a substitute for professional medical advice, diagnosis, or treatment.
             </p>
           </div>

@@ -16,6 +16,7 @@ import Dashboard from "./pages/Dashboard";
 import Resources from "./pages/Resources";
 import AIAssistant from "./pages/AIAssistant";
 import Events from "./pages/Events";
+import ShareStory from "./pages/ShareStory";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/events" element={<Events />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/share-story" element={<ShareStory />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </TooltipProvider>

@@ -1,5 +1,4 @@
--- Essential Chatroom Setup for Ihumure
--- Run this in your Supabase SQL Editor if chatrooms aren't working
+-- Essential Chatroom Setup for Ihumure (idempotent)
 
 -- Create chat_rooms table first
 CREATE TABLE IF NOT EXISTS chat_rooms (
@@ -34,31 +33,45 @@ ALTER TABLE chat_rooms ENABLE ROW LEVEL SECURITY;
 ALTER TABLE room_members ENABLE ROW LEVEL SECURITY;
 ALTER TABLE chat_messages ENABLE ROW LEVEL SECURITY;
 
--- Simple RLS policies for chat_rooms (everyone can view)
+-- Chat rooms policies
+DROP POLICY IF EXISTS "Chat rooms are viewable by everyone" ON chat_rooms;
 CREATE POLICY "Chat rooms are viewable by everyone" ON chat_rooms
-  FOR SELECT USING (true);
+  FOR SELECT TO PUBLIC
+  USING (true);
 
--- RLS policies for room_members
+-- room_members policies
+DROP POLICY IF EXISTS "Users can view own room memberships" ON room_members;
 CREATE POLICY "Users can view own room memberships" ON room_members
-  FOR SELECT USING (auth.uid() = user_id);
+  FOR SELECT TO authenticated
+  USING ((SELECT auth.uid()) = user_id);
 
+DROP POLICY IF EXISTS "Users can join rooms" ON room_members;
 CREATE POLICY "Users can join rooms" ON room_members
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
+  FOR INSERT TO authenticated
+  WITH CHECK ((SELECT auth.uid()) = user_id);
 
+DROP POLICY IF EXISTS "Users can leave rooms" ON room_members;
 CREATE POLICY "Users can leave rooms" ON room_members
-  FOR DELETE USING (auth.uid() = user_id);
+  FOR DELETE TO authenticated
+  USING ((SELECT auth.uid()) = user_id);
 
--- RLS policies for chat_messages
+-- chat_messages policies
+DROP POLICY IF EXISTS "Chat messages are viewable by everyone" ON chat_messages;
 CREATE POLICY "Chat messages are viewable by everyone" ON chat_messages
-  FOR SELECT USING (true);
+  FOR SELECT TO PUBLIC
+  USING (true);
 
+DROP POLICY IF EXISTS "Users can insert messages" ON chat_messages;
 CREATE POLICY "Users can insert messages" ON chat_messages
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
+  FOR INSERT TO authenticated
+  WITH CHECK ((SELECT auth.uid()) = user_id);
 
+DROP POLICY IF EXISTS "Users can delete own messages" ON chat_messages;
 CREATE POLICY "Users can delete own messages" ON chat_messages
-  FOR DELETE USING (auth.uid() = user_id);
+  FOR DELETE TO authenticated
+  USING ((SELECT auth.uid()) = user_id);
 
--- Insert default chat rooms
+-- Insert default chat rooms (idempotent)
 INSERT INTO chat_rooms (name, description, is_private) VALUES
 ('Anxiety Support', 'Share experiences and coping strategies for anxiety', FALSE),
 ('Depression Support', 'Community support for managing depression', FALSE),

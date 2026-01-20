@@ -44,8 +44,8 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "glass shadow-soft py-3"
-          : "bg-transparent py-5"
+        ? "glass shadow-soft py-3"
+        : "bg-transparent py-5"
         }`}
     >
       <nav className="container mx-auto px-4 flex items-center justify-between">
@@ -69,8 +69,8 @@ export function Navbar() {
               key={link.href}
               to={link.href}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${location.pathname === link.href
-                  ? "text-primary bg-primary-soft"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                ? "text-primary bg-primary-soft"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
             >
               {link.name}
@@ -160,8 +160,8 @@ export function Navbar() {
                   <Link
                     to={link.href}
                     className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location.pathname === link.href
-                        ? "text-primary bg-primary-soft"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? "text-primary bg-primary-soft"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                       }`}
                   >
                     {link.name}

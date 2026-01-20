@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
-import { 
-  Headphones, 
-  BookOpen, 
-  Video, 
-  ExternalLink, 
+import {
+  Headphones,
+  BookOpen,
+  Video,
+  ExternalLink,
   Play,
   Heart,
   Brain,
@@ -20,19 +20,22 @@ import {
   Users,
   Coffee,
   Sunrise,
+  MessageCircle,
+  Shield,
+  Eye,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Animated icon component
 const AnimatedIcon = ({ Icon, color, delay = 0 }: { Icon: React.ElementType; color: string; delay?: number }) => (
   <motion.div
-    animate={{ 
+    animate={{
       scale: [1, 1.1, 1],
       rotate: [0, 5, -5, 0]
     }}
-    transition={{ 
-      duration: 3, 
-      repeat: Infinity, 
+    transition={{
+      duration: 3,
+      repeat: Infinity,
       delay,
       ease: "easeInOut"
     }}
@@ -189,6 +192,75 @@ const videos = [
   },
 ];
 
+const stories = [
+  {
+    title: "Finding Hope in Community",
+    author: "Anonymous",
+    category: "Recovery Journey",
+    excerpt: "After years of struggling with anxiety, I found strength in sharing my story and connecting with others who understood...",
+    readTime: "3 min read",
+    date: "2 days ago",
+    Icon: Heart,
+    color: "bg-rose-soft text-rose",
+    privacy: "anonymous"
+  },
+  {
+    title: "The Day I Asked for Help",
+    author: "Jean-Pierre",
+    category: "Support Experience",
+    excerpt: "Reaching out was the hardest and best decision I ever made. This is my journey from isolation to connection...",
+    readTime: "5 min read",
+    date: "1 week ago",
+    Icon: Users,
+    color: "bg-blue-soft text-blue",
+    privacy: "public"
+  },
+  {
+    title: "Small Steps, Big Changes",
+    author: "Marie",
+    category: "Wellness Tips",
+    excerpt: "How tiny daily habits transformed my mental health. These simple practices made all the difference...",
+    readTime: "4 min read",
+    date: "2 weeks ago",
+    Icon: Sparkles,
+    color: "bg-green-soft text-green",
+    privacy: "public"
+  },
+  {
+    title: "Overcoming the Stigma",
+    author: "Anonymous",
+    category: "Overcoming Challenges",
+    excerpt: "Growing up, mental health was never discussed. Here's how I broke free from cultural barriers and found healing...",
+    readTime: "6 min read",
+    date: "3 weeks ago",
+    Icon: Shield,
+    color: "bg-purple-soft text-purple",
+    privacy: "anonymous"
+  },
+  {
+    title: "Our Community Saved Me",
+    author: "Emmanuel",
+    category: "Community Impact",
+    excerpt: "When I hit rock bottom, the Ihumure community became my lifeline. This is how peer support changed everything...",
+    readTime: "4 min read",
+    date: "1 month ago",
+    Icon: MessageCircle,
+    color: "bg-amber-soft text-amber",
+    privacy: "public"
+  },
+  {
+    title: "Learning to Love Myself Again",
+    author: "Anonymous",
+    category: "Recovery Journey",
+    excerpt: "Depression made me forget who I was. This is the story of rediscovering self-worth and finding joy again...",
+    readTime: "7 min read",
+    date: "1 month ago",
+    Icon: Star,
+    color: "bg-pink-soft text-pink",
+    privacy: "anonymous"
+  },
+];
+
 export default function Resources() {
   return (
     <PageLayout>
@@ -217,13 +289,13 @@ export default function Resources() {
               Mental Health Resources
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore curated podcasts, articles, and videos to support your mental wellness journey.
+              Explore curated podcasts, articles, videos, and personal stories to support your mental wellness journey.
             </p>
           </motion.div>
 
           {/* Tabs */}
           <Tabs defaultValue="podcasts" className="max-w-6xl mx-auto">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
               <TabsTrigger value="podcasts" className="gap-2">
                 <Headphones className="w-4 h-4" />
                 Podcasts
@@ -235,6 +307,10 @@ export default function Resources() {
               <TabsTrigger value="videos" className="gap-2">
                 <Video className="w-4 h-4" />
                 Videos
+              </TabsTrigger>
+              <TabsTrigger value="stories" className="gap-2">
+                <MessageCircle className="w-4 h-4" />
+                Stories
               </TabsTrigger>
             </TabsList>
 
@@ -282,7 +358,7 @@ export default function Resources() {
                       className="bg-card rounded-2xl shadow-card p-6 hover:shadow-hover transition-all"
                     >
                       <div className="flex items-center gap-3 mb-4">
-                        <motion.div 
+                        <motion.div
                           className="w-10 h-10 rounded-xl bg-primary-soft flex items-center justify-center"
                           animate={{ scale: [1, 1.05, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: index * 0.1 }}
@@ -324,7 +400,7 @@ export default function Resources() {
                     >
                       <div className={`h-32 bg-gradient-to-br ${video.color} flex items-center justify-center relative`}>
                         <motion.div
-                          animate={{ 
+                          animate={{
                             scale: [1, 1.2, 1],
                             rotate: [0, 5, -5, 0]
                           }}
@@ -332,11 +408,11 @@ export default function Resources() {
                         >
                           <Icon className="w-12 h-12 text-foreground/60" />
                         </motion.div>
-                        <motion.div 
+                        <motion.div
                           className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
                           whileHover={{ scale: 1 }}
                         >
-                          <motion.div 
+                          <motion.div
                             className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
@@ -357,6 +433,94 @@ export default function Resources() {
                   );
                 })}
               </div>
+            </TabsContent>
+
+            {/* Stories */}
+            <TabsContent value="stories">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {stories.map((story, index) => {
+                  const Icon = story.Icon;
+                  return (
+                    <motion.div
+                      key={story.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ y: -5 }}
+                      className="bg-card rounded-2xl shadow-card p-6 hover:shadow-hover transition-all"
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <motion.div
+                            className="w-10 h-10 rounded-xl flex items-center justify-center"
+                            animate={{ scale: [1, 1.05, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: index * 0.1 }}
+                          >
+                            <Icon className="w-5 h-5" />
+                          </motion.div>
+                          <div>
+                            <span className="text-xs font-medium text-primary bg-primary-soft px-2 py-1 rounded-full">
+                              {story.category}
+                            </span>
+                            <div className="flex items-center gap-1 mt-1">
+                              {story.privacy === "anonymous" ? (
+                                <Shield className="w-3 h-3 text-muted-foreground" />
+                              ) : (
+                                <Eye className="w-3 h-3 text-muted-foreground" />
+                              )}
+                              <span className="text-xs text-muted-foreground">
+                                {story.privacy === "anonymous" ? "Anonymous" : "Public"}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h3 className="font-semibold text-foreground mb-2">{story.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{story.excerpt}</p>
+
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-medium text-foreground">
+                            {story.author}
+                          </span>
+                        </div>
+                        <span className="text-xs text-muted-foreground">{story.date}</span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">{story.readTime}</span>
+                        <Button variant="link" size="sm" className="gap-1 p-0">
+                          Read Story
+                          <ExternalLink className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Share Your Story CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-8 text-center p-6 rounded-2xl bg-primary/5 border border-primary/20"
+              >
+                <MessageCircle className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  Have a Story to Share?
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Your experience can inspire hope and help others feel less alone.
+                </p>
+                <Link to="/share-story">
+                  <Button className="gap-2">
+                    <MessageCircle className="w-4 h-4" />
+                    Share Your Story
+                  </Button>
+                </Link>
+              </motion.div>
             </TabsContent>
           </Tabs>
 
