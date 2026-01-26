@@ -1,0 +1,7 @@
+node_modules
+.env
+.env.local
+.env.production
+.env.development
+.env.example
+dist/assets/index-CMRbeiK4.js
