@@ -5,3 +5,5 @@ node_modules
 .env.development
 .env.example
 dist/assets/index-CMRbeiK4.js
+.DS_Store
+.gitignore
