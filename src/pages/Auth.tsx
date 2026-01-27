@@ -96,20 +96,11 @@ export default function Auth() {
       } else {
         const { error } = await signIn(email, password);
         if (error) {
-          // Handle email confirmation error specifically
-          if (error.message.includes('confirmation link')) {
-            toast({
-              title: "Email Confirmation Required",
-              description: error.message,
-              variant: "destructive",
-            });
-          } else {
-            toast({
-              title: "Sign in failed",
-              description: error.message || "Invalid email or password. Please try again.",
-              variant: "destructive",
-            });
-          }
+          toast({
+            title: "Sign in failed",
+            description: "Invalid email or password. Please try again.",
+            variant: "destructive",
+          });
         } else {
           toast({
             title: "Welcome back!",

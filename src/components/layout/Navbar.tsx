@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Heart, User, LogOut, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   DropdownMenu,
@@ -11,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -62,20 +64,39 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - Tubelight Effect */}
         <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${location.pathname === link.href
-                ? "text-primary bg-primary-soft"
-                : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+          <div className="flex items-center gap-2 bg-background/60 border border-border backdrop-blur-lg p-1 rounded-full shadow-lg">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href;
+
+              return (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={cn(
+                    "relative px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                    "text-muted-foreground hover:text-primary",
+                    isActive && "text-primary"
+                  )}
+                >
+                  {link.name}
+
+                  {isActive && (
+                    <motion.div
+                      layoutId="tubelight"
+                      className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    >
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
+                        <div className="absolute w-12 h-6 bg-primary/20 blur-md -top-2 -left-2 rounded-full" />
+                      </div>
+                    </motion.div>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
         {/* CTA Button */}
@@ -118,9 +139,7 @@ export function Navbar() {
                 </Button>
               </Link>
               <Link to="/conditions">
-                <Button size="sm" className="shadow-soft">
-                  Get Support
-                </Button>
+                <InteractiveHoverButton text="Get Support" />
               </Link>
             </>
           )}
@@ -150,24 +169,26 @@ export function Navbar() {
             className="lg:hidden glass border-t border-border"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <Link
-                    to={link.href}
-                    className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location.pathname === link.href
-                      ? "text-primary bg-primary-soft"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                      }`}
+              {navLinks.map((link, index) => {
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      to={link.href}
+                      className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location.pathname === link.href
+                        ? "text-primary bg-primary-soft"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <div className="flex flex-col gap-2 pt-4 border-t border-border mt-2">
                 {user ? (
                   <>
@@ -195,8 +216,8 @@ export function Navbar() {
                         Sign In
                       </Button>
                     </Link>
-                    <Link to="/conditions">
-                      <Button className="w-full">Get Support</Button>
+                    <Link to="/conditions" className="flex justify-center">
+                      <InteractiveHoverButton text="Get Support" />
                     </Link>
                   </>
                 )}
