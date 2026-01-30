@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Heart, User, LogOut, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { ThemeSwitch } from "@/components/ui/theme-switch-button";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   DropdownMenu,
@@ -133,14 +134,12 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <Link to="/auth">
-                <Button variant="ghost" size="sm">
-                  Sign In
-                </Button>
-              </Link>
-              <Link to="/conditions">
-                <InteractiveHoverButton text="Get Support" />
-              </Link>
+              <div className="flex items-center gap-3">
+                <ThemeSwitch />
+                <Link to="/auth">
+                  <InteractiveHoverButton text="Sign In" />
+                </Link>
+              </div>
             </>
           )}
         </div>
@@ -211,14 +210,12 @@ export function Navbar() {
                   </>
                 ) : (
                   <>
-                    <Link to="/auth">
-                      <Button variant="outline" className="w-full">
-                        Sign In
-                      </Button>
-                    </Link>
-                    <Link to="/conditions" className="flex justify-center">
-                      <InteractiveHoverButton text="Get Support" />
-                    </Link>
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                      <ThemeSwitch />
+                      <Link to="/auth" className="flex-1">
+                        <InteractiveHoverButton text="Sign In" />
+                      </Link>
+                    </div>
                   </>
                 )}
               </div>
